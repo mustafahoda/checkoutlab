@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer base {
+  :root {
+    /* --screen-sm: 640px;
+    --screen-md: 768px;
+    --screen-lg: 1024px;
+    --screen-xl: 1280px;
+    --screen-2xl: 1536px; */
+
+    --background: 204, 56%, 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 215, 75%, 14%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --color-warning: rgb(255, 90, 0);
+    --color-js-icon: rgb(255, 165, 0);
+    --color-preview-icon: rgb(88, 101, 242);
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 20% 87%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --sidebar-width: 4rem;
+    --topbar-width: 3rem;
+    --footerbar-width: 1.5rem;
+    --tab-lable-height: 34px;
+    --white: 0, 0%, 100%;
+
+    --radius: 0.4rem;
+    --grey: 210, 16.67%, 35%;
+
+    --custom-accent: rgb(10, 191, 83);
+    --custom-accent-info: #01baef;
+    --custom-font-xxs: 0.65rem;
+    --custom-prettify-height: 31px;
+
+  }
+
+  /* .light {
+    --border: 217.2 32.6% 17.5%;
+  } */
+
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --custom-accent-code: 0 0% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --code-variable: #2277ff;
+    --code-property: #9966b8;
+    --code-reserved: #225588;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --grey: 0, 0%, 75%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --white: 0, 0%, 100%;
+
+    --adyen-sdk-color-label-primary: 210 40% 98%;
+  }
+
+  /* When embed-iframe class exists, make root transparent too */
+  :root:has(.embed-iframe) {
+    --background: 0 0% 100% 0;
+    background-color: transparent !important;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+  }
+}
+
+.adyen-checkout__payment-method {
+  @apply !bg-card;
+  @apply !border-border;
+  @apply !rounded-lg;
+  @apply text-foreground;
+  @apply mb-[1px];
+  @apply shadow-hover;
+}
+
+.adyen-checkout__payment-method__name_wrapper {
+  @apply !text-foreground;
+}
+
+.cm-theme {
+  @apply w-[100%] h-[100%];
+}
+
+.highlight-green {
+  background-color: rgba(0, 255, 0, 0.2) !important;
+  transition: background-color 0.2s ease !important;
+  cursor: pointer !important;
+  border: 1px dotted rgb(10, 191, 83) !important;
+  position: relative !important;
+  z-index: 999999 !important;
+}
+
+.highlight-green:hover {
+  background-color: rgba(0, 255, 0, 0.3) !important;
+  border-width: 1px !important;
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

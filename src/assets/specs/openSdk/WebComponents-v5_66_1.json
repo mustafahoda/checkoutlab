@@ -1,0 +1,175 @@
+{
+  "opensdk": "1.0.0",
+  "servers": [
+    {
+      "url-js": "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/5.66.1/adyen.js",
+      "url-css": "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/5.66.1/adyen.css"
+    }
+  ],
+  "info": {
+    "version": "5.66.1",
+    "title": "Web Components API",
+    "description": "Adyen Web provides you with the building blocks to create a checkout experience for your shoppers, allowing them to pay using the payment method of their choice.",
+    "termsOfService": "https://www.adyen.com/legal/terms-and-conditions",
+    "contact": {
+      "name": "Adyen IM Experience team",
+      "url": "https://github.com/adyen-examples"
+    }
+  },
+  "tags": [
+    {
+      "name": "Checkout SDK"
+    },
+    {
+      "name": "Checkout CSS"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "dropin": {
+        "openFirstPaymentMethod": {
+          "description": "When enabled, Drop-in opens the first payment method automatically on page load. Defaults to true.",
+          "type": "boolean"
+        },
+        "openFirstStoredPaymentMethod": {
+          "description": "When enabled, Drop-in opens the payment method with stored card details on page load. This option takes precedence over openFirstPaymentMethod. Defaults to true.",
+          "type": "boolean"
+        },
+        "showStoredPaymentMethods": {
+          "description": "Shows or hides payment methods with stored card details. Defaults to true.",
+          "type": "boolean"
+        },
+        "showRemovePaymentMethodButton": {
+          "description": "Allows the shopper to remove a stored payment method. Defaults to false.\nIf using this prop, you must also implement the onDisableStoredPaymentMethod callback.",
+          "type": "boolean"
+        },
+        "showPaymentMethods": {
+          "description": "Shows or hides regular (not stored) payment methods. Set to false if you only want to show payment methods with stored card details. Defaults to true.",
+          "type": "boolean"
+        },
+        "showPayButton": {
+          "description": "Show or hides a Pay Button for each payment method. Defaults to true. The Pay button triggers the onSubmit event when payment details are valid.\n\n\nIf you want to disable the button and then trigger the submit flow on your own, set this to false and call the .submit() method from your own button implementation. For example, dropin.submit()\n\nNote that PayPal Smart Payment Buttons doesn't support the .submit() method.",
+          "type": "boolean"
+        },
+        "setStatusAutomatically": {
+          "description": "Set to false to not set the Drop-in status to 'loading' when onSubmit is triggered. Defaults to true.",
+          "type": "boolean"
+        },
+        "redirectFromTopWhenInIframe": {
+          "description": "If your Drop-in is inside of an iframe element, set to true if you want redirects to be performed on the top-level window.\nWe recommend that you don't put Drop-in in an iframe.",
+          "type": "boolean"
+        },
+        "onReady()": {
+          "description": "Called when Drop-in is initialized and ready for use.",
+          "type": "function"
+        },
+        "onSelect(component)": {
+          "description": "Called when the shopper selects a payment method.",
+          "type": "function"
+        },
+        "onDisableStoredPaymentMethod(storedPaymentMethodId, resolve, reject)": {
+          "description": "Called when a shopper removes a stored payment method. To remove the selected payment method, make a DELETE /storedPaymentMethod request including the storedPaymentMethodId. Then call either resolve() or reject(), depending on the /storedPaymentMethod response.",
+          "type": "function"
+        },
+        "mount(selector)": {
+          "description": "Mounts the Drop-in into the DOM returned by the selector.\nThe selector must be either a valid CSS selector string or an HTMLElement reference.",
+          "type": "function"
+        },
+        "unmount()": {
+          "description": "Unmounts the Drop-in from the DOM. We recommend to unmount in case the payment amount changes after the initial mount.",
+          "type": "function"
+        },
+        "closeActivePaymentMethod()": {
+          "description": "Closes a selected payment method, for example if you want to reset the Drop-in.",
+          "type": "function"
+        }
+      }
+    },
+    "parameters": {
+      "advanced": {
+        "paymentMethodsResponse": {
+          "description": "The full /paymentMethods response returned when you get available payment methods.",
+          "type": "object"
+        },
+        "clientKey": {
+          "description": "A public key linked to your API credential, used for client-side authentication.\nWeb Drop-in versions before 3.10.1 use originKey instead. Find out how to migrate from using originKey to clientKey.",
+          "type": "string"
+        },
+        "locale": {
+          "description": "The shopper's locale. This is used to set the language rendered in the UI. For a list of supported locales, see Language and localization.",
+          "type": "string"
+        },
+        "environment": {
+          "description": "Use test. When you're ready to accept live payments, change the value to one of our live environments. ",
+          "type": "string"
+        },
+        "onSubmit(state, dropin)": {
+          "description": "Create an event handler, called when the shopper selects the Pay button and payment details are valid.",
+          "type": "function"
+        },
+        "onChange(state, dropin)": {
+          "description": "Create an event handler, called when the shopper provides the required payment details.",
+          "type": "function"
+        },
+        "onAdditionalDetails(state, dropin)": {
+          "description": "Create an event handler, called when a payment method requires more details, for example for native 3D Secure 2, or native QR code payment methods.",
+          "type": "function"
+        },
+        "onError(error)": {
+          "description": "Create an event handler, called when an error occurs in Drop-in.",
+          "type": "function"
+        },
+        "paymentMethodsConfiguration": {
+          "description": "Required or optional configuration for specific payment methods. For more information, refer to our payment method guides.",
+          "type": "object"
+        },
+        "amount": {
+          "description": "Amount to be displayed on the Pay Button. It expects an object with the value and currency properties. For example, { value: 1000, currency: 'USD' }.",
+          "type": "object"
+        },
+        "analytics.enabled": {
+          "description": "Indicates if you're sending analytics data to Adyen. Default: true.",
+          "type": "boolean"
+        },
+        "required": [
+          "paymentMethodsResponse",
+          "clientKey",
+          "locale",
+          "environment",
+          "onSubmit(state, dropin)",
+          "onAdditionalDetails(state, dropin)"
+        ]
+      },
+      "sessions": {}
+    },
+    "styles": {
+      ".adyen-checkout__payment-method": "Payment method container",
+      ".adyen-checkout__payment-method--selected": "Payment method that has been selected",
+      ".adyen-checkout__payment-method__header": "Payment method icon and name",
+      ".adyen-checkout__payment-method__radio": "Radio button in payment method header",
+      ".adyen-checkout__payment-method__radio--selected": "Selected radio button in payment method header",
+      ".adyen-checkout__payment-method__name": "Payment method name in the payment method header",
+      ".adyen-checkout__spinner__wrapper": "Spinning icon",
+      ".adyen-checkout__button": "Buttons",
+      ".adyen-checkout__button--pay": "Pay button",
+      ".adyen-checkout__field": "Form field container",
+      ".adyen-checkout__label": "Form label container",
+      ".adyen-checkout__label__text": "Text element inside the form label container",
+      ".adyen-checkout__input": "Input fields",
+      ".adyen-checkout__input--error": "Error state for the input fields",
+      ".adyen-checkout__error-text": "Error message text",
+      ".adyen-checkout__card__cardNumber__input": "Input field for the card number",
+      ".adyen-checkout__field--expiryDate": "Input field for the expiry date",
+      ".adyen-checkout__field__cvc": "Input field for the CVC security code",
+      ".adyen-checkout__card__holderName": "Input field for cardholder name",
+      ".adyen-checkout__checkbox__input": "Checkboxes",
+      ".adyen-checkout__checkbox__label": "Checkbox labels",
+      ".adyen-checkout__radio_group__input": "Radio buttons",
+      ".adyen-checkout__dropdown__button": "Dropdown button showing list of options",
+      ".adyen-checkout__dropdown__list": "Dropdown list",
+      ".adyen-checkout__dropdown__element": "Elements in the dropdown list",
+      ".adyen-checkout__link": "Links"
+    },
+    "examples": {}
+  }
+}
